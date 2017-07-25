@@ -1,7 +1,6 @@
 package br.com.akira.controller.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,18 +28,14 @@ public class UsuarioValidaLogin extends HttpServlet {
 		String senha = request.getParameter("senha");
 
 		UsuarioDAO dao = new UsuarioDAO();
-		try {
-			Usuario usuarioValido = dao.usuarioValido(login, senha);
-			if (usuarioValido != null) {
-				request.getRequestDispatcher("index.jsp").forward(request, response);
-			} else {
-				request.setAttribute("messagem", "Usuario/Senha Inválido");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Usuario usuarioValido = dao.usuarioValido(login, senha);
 
+		if (usuarioValido != null) {
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} else {
+			request.setAttribute("messagem", "Usuario/Senha Inválido");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 	}
 
 }

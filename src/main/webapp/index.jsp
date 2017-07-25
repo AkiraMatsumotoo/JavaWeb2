@@ -8,7 +8,7 @@
 <title>Tela Principal</title>
 </head>
 <body>
-	<div id="Total">
+	<div id="total">
 		<div id="cabecalho">Cabeçalho</div>
 		<div id="menu">Menu</div>
 		<div id="central">Central</div>

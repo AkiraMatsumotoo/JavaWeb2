@@ -12,7 +12,7 @@ public class UsuarioDAO {
 	Connection conn = ConnectionFactory.getConnection();
 	ResultSet rs = null;
 
-	public void adicionar(Usuario u) throws SQLException {
+	public void adicionar(Usuario u) {
 		String sql = "INSERT INTO usuario (nome,login,senha,nivel)VALUES(?,?,?,?)";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setString(1, u.getNome());
@@ -23,11 +23,15 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public void exclui(Usuario u) throws SQLException {
+	public void exclui(Usuario u) {
 		String sql = "DELETE FROM usuario WHERE id=?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, u.getId());
@@ -37,11 +41,15 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public void edita(Usuario u) throws SQLException {
+	public void edita(Usuario u) {
 		String sql = "UPDATE usuario SET nome=?, login=?, senha=?, nivel=? WHERE id=?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setString(1, u.getNome());
@@ -54,11 +62,15 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public Usuario usuarioValido(String login, String senha) throws SQLException {
+	public Usuario usuarioValido(String login, String senha) {
 		String sql = "SELECT * FROM usuario WHERE login=? AND senha=?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setString(1, login);
@@ -76,13 +88,18 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
-			rs.close();
+			try {
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
 		}
 		return null;
 	}
 
-	public Usuario buscarID(int id) throws SQLException {
+	public Usuario buscarID(int id) {
 		String sql = "SELECT * FROM usuario WHERE id=?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setInt(1, id);
@@ -99,13 +116,17 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
-			rs.close();
+			try {
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
 
-	public ArrayList<Usuario> buscarNome(String nome) throws SQLException {
+	public ArrayList<Usuario> buscarNome(String nome) {
 		String sql = "SELECT * FROM usuario WHERE nome=?";
 		ArrayList<Usuario> lista = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -124,13 +145,17 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
-			rs.close();
+			try {
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
 
-	public ArrayList<Usuario> buscarLogin(String login) throws SQLException {
+	public ArrayList<Usuario> buscarLogin(String login) {
 		String sql = "SELECT * FROM usuario WHERE nome=?";
 		ArrayList<Usuario> lista = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -149,15 +174,18 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
-			rs.close();
+			try {
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
 
-	public ArrayList<Usuario> buscarTodosCompleto(String like, String order, int limit, int offset)
-			throws SQLException {
-		String sql = "SELECT * FROM usuario WHERE nome LIKE ? ORDER BY "+order+" ASC LIMIT ? OFFSET ?";
+	public ArrayList<Usuario> buscarTodosCompleto(String like, String order, int limit, int offset) {
+		String sql = "SELECT * FROM usuario WHERE nome LIKE ? ORDER BY " + order + " ASC LIMIT ? OFFSET ?";
 		ArrayList<Usuario> lista = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setString(1, "%" + like + "%");
@@ -179,13 +207,17 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
-			rs.close();
+			try {
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
 
-	public ArrayList<Usuario> buscarTodos() throws SQLException {
+	public ArrayList<Usuario> buscarTodos() {
 		String sql = "SELECT * FROM usuario";
 		ArrayList<Usuario> lista = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -203,13 +235,17 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
-			rs.close();
+			try {
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
 
-	public int qtdRegistro() throws SQLException {
+	public int qtdRegistro() {
 		String sql = "SELECT COUNT(*) AS qtdUsuario FROM usuario";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
 			rs = ps.executeQuery();
@@ -220,8 +256,12 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
-			rs.close();
+			try {
+				rs.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return 0;
 	}
