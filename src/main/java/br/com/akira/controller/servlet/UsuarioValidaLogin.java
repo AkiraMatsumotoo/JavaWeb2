@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.akira.bean.model.Usuario;
 import br.com.akira.dao.jdbc.UsuarioDAO;
@@ -30,7 +31,10 @@ public class UsuarioValidaLogin extends HttpServlet {
 		UsuarioDAO dao = new UsuarioDAO();
 		Usuario usuarioValido = dao.usuarioValido(login, senha);
 
+		HttpSession sessao = request.getSession();
+		
 		if (usuarioValido != null) {
+			sessao.setAttribute("nome", usuarioValido.getNome());
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} else {
 			request.setAttribute("messagem", "Usuario/Senha Inválido");
