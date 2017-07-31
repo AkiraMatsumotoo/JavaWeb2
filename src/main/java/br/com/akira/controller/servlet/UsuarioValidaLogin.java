@@ -32,10 +32,11 @@ public class UsuarioValidaLogin extends HttpServlet {
 		Usuario usuarioValido = dao.usuarioValido(login, senha);
 
 		HttpSession sessao = request.getSession();
+		sessao.setMaxInactiveInterval(60*5);
 		
 		if (usuarioValido != null) {
-			sessao.setAttribute("nome", usuarioValido.getNome());
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			sessao.setAttribute("usuarioSessao", usuarioValido.getNome());
+			request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 		} else {
 			request.setAttribute("messagem", "Usuario/Senha Inválido");
 			request.getRequestDispatcher("login.jsp").forward(request, response);

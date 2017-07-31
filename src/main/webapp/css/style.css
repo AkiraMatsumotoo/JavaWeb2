@@ -1,0 +1,78 @@
+#todoSite {
+	background-color: #f1f5f9;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: 800px;
+	left: 5px;
+	line-height: normal;
+	padding: 30px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: 1200px;
+	z-index: 100000;
+}
+header{
+	font-size: 50px;
+	text-align: center;
+	line-height: 80px;
+	background-color: #f1f5f9;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+	height: 100px;
+	width: 1190px;
+	margin: 5px;
+}
+
+nav {
+	border-radius: 3px;
+	height: 630px;
+	width: 160px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+	margin: 5px;
+	float: left;
+}
+
+#central {
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+	height: 630px;
+	width: 1020px;
+	float: right;
+	margin: 5px;
+}
+
+footer {
+	font-size: 50px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+	font-size: 1.875rem;
+	border-radius: 3px;
+	height: 40px;
+	width: 1190px;
+	margin: 5px;
+	float: left;
+}
+
+#login{
+	border:1px solid #ddd;
+    border-collapse: collapse;	
+}
+
+table {
+	border:1px solid #ddd;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+	border:1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}

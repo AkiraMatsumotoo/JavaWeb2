@@ -39,7 +39,7 @@ public class UsuarioTeste {
 
 	private static void listaCompleta() throws SQLException {
 		UsuarioDAO dao = new UsuarioDAO();
-		ArrayList<Usuario> lista = dao.buscarTodosCompleto("an", "nome", 15, 0);
+		ArrayList<Usuario> lista = dao.buscarTodosCompleto(	"an", "nome", 15, 0);
 
 		for (Usuario u : lista) {
 			System.out.println("[ID:" + u.getId() + "] [Nome:" + u.getNome() + "] [Login:" + u.getLogin() + "]");

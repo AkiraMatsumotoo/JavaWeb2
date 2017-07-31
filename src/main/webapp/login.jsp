@@ -22,9 +22,17 @@
 				</tr>
 				<tr>
 					<td><input type="submit" value="Entrar" /></td>
-					<td><c:if test="${messagem!=null}">
-						${messagem}
-					</c:if></td>
+
+					<td>
+						<!--
+						se o usuario for diferente de nulo mas não contem no banco
+						mostra a msg de invalido 
+						--> 
+						<c:if test="${messagem!=null}">
+							${messagem}
+						</c:if>
+
+					</td>
 				</tr>
 			</table>
 		</form>

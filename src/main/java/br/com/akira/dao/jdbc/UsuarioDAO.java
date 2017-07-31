@@ -70,6 +70,14 @@ public class UsuarioDAO {
 		}
 	}
 
+	public void salvar(Usuario u) {
+		if (u.getId() == 0) {
+			adicionar(u);
+		} else {
+			edita(u);
+		}
+	}
+
 	public Usuario usuarioValido(String login, String senha) {
 		String sql = "SELECT * FROM usuario WHERE login=? AND senha=?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -187,6 +195,7 @@ public class UsuarioDAO {
 		String sql = "SELECT * FROM usuario WHERE nome LIKE ? ORDER BY " + order + " ASC LIMIT ? OFFSET ?";
 		ArrayList<Usuario> lista = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			// ps.setString(1, campo);
 			ps.setString(1, "%" + like + "%");
 			// ps.setString(2, order);
 			ps.setInt(2, limit);
@@ -208,7 +217,7 @@ public class UsuarioDAO {
 		} finally {
 			try {
 				rs.close();
-				conn.close();
+				// conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -244,9 +253,10 @@ public class UsuarioDAO {
 		return null;
 	}
 
-	public int qtdRegistro() {
-		String sql = "SELECT COUNT(*) AS qtdUsuario FROM usuario";
+	public int qtdRegistro(String nome) {
+		String sql = "SELECT COUNT(*) AS qtdUsuario FROM usuario WHERE nome LIKE ?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setString(1, "%" + nome + "%");
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				int qtd = rs.getInt("qtdUsuario");
@@ -257,7 +267,7 @@ public class UsuarioDAO {
 		} finally {
 			try {
 				rs.close();
-				conn.close();
+				// conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

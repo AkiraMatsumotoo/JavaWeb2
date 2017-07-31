@@ -26,4 +26,15 @@
     <url-pattern>/UsuarioValidaLogin</url-pattern>
     <url-pattern>/usuValidaLogin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UsuarioSair</display-name>
+    <servlet-name>UsuarioSair</servlet-name>
+    <servlet-class>br.com.akira.controller.servlet.UsuarioSair</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsuarioSair</servlet-name>
+    <url-pattern>/UsuarioSair</url-pattern>
+    <url-pattern>/usuSair</url-pattern>
+  </servlet-mapping>
 </web-app>
