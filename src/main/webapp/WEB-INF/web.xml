@@ -37,4 +37,14 @@
     <url-pattern>/UsuarioSair</url-pattern>
     <url-pattern>/usuSair</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BairroController</display-name>
+    <servlet-name>BairroController</servlet-name>
+    <servlet-class>br.com.akira.controller.servlet.BairroController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BairroController</servlet-name>
+    <url-pattern>/BairroController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -8,32 +8,28 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Lista de Usuarios</title>
+<title>Editar Usuarios central</title>
 </head>
 <body>
 
-<body>
-	<div id="todoSite" align="center">
 
-		<div id="header">
-			<jsp:include page="Cabecalho.jsp" />
-		</div>
+	<form action="BairroController" method="get">
+		<table>
+				<tr>
+					<td>ID</td>
+					<td><input type="text" name="bairro_id" value="${bairroBuscado.bairro_id}" readonly="readonly"></td>
+				</tr>
+				<tr>
+					<td>Descricao</td>
+					<td><input type="text" name="bairro_descricao" value="${bairroBuscado.bairro_descricao}" autofocus=""></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" name="acao" value="salvar"></td>
+				</tr>
+		</table>
+	</form>
 
-		<div id="nav">
-			<jsp:include page="Menu.jsp" />
-		</div>
 
-		<div id="central">
-			<jsp:include page="usuListaCentral.jsp" />
-		</div>
-
-		<div id="footer">
-			<jsp:include page="Rodape.jsp" />
-		</div>
-	</div>
 </body>
-
-
-
-
 </html>

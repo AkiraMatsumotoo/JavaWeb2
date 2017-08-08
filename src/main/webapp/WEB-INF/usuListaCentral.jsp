@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Lista de Usuarios</title>
+
 </head>
 <body>
 	<form action="UsuarioController" method="get">
@@ -16,25 +17,24 @@
 			<tr>
 
 				<!-- Adiciona um novo Usuario -->
-				<td><a href="UsuarioController?acao=adiciona">Adicionar
-						Usuario</a></td>
+				<td><a href="UsuarioController?acao=adiciona">Adicionar Usuario</a></td>
 
 				<!-- Busca um usuario -->
-				<td>Nome :<input type="text" name="like" /> 
-				<input type="submit" value="buscar" name="acao" /></td>
+<!-- 				<td>Nome :<input type="text" name="like" />  -->
+<!-- 				<input type="submit" value="buscar" name="acao" /></td> -->
 
 				<!-- Usando Select option para buscar -->
-<!-- 				<td>Buscar Por: -->
-<!-- 					<select name="campo" id="campo"> -->
+				<td>Buscar Por:
+					<select name="buscarPor" id="buscarPor">
 <!-- 						<option value="id">ID</option> -->
-<!-- 						<option value="nome" selected="selected">Nome</option> -->
-<!-- 						<option value="login">Login</option> -->
-<!-- 						<option value="senha">Senha</option> -->
+						<option value="nome"  selected="selected">Nome</option>
+						<option value="login" selected="selected">Login</option>
+						<option value="senha" selected="selected">Senha</option>
 <!-- 						<option value="nivel">Nivel</option> -->
-<!-- 					</select> -->
-<!-- 					<input type="text" name="like" />  -->
-<!-- 					<input type="submit" value="buscar" name="acao"/> -->
-<!-- 				</td> -->
+					</select>
+					<input type="text" name="like" /> 
+					<input type="submit" value="buscar" name="acao"/>
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -57,8 +57,8 @@
 				<td>${usuario.login}</td>
 				<td>${usuario.senha}</td>
 				<td>${usuario.nivel}</td>
-				<td><a href="UsuarioController?acao=excluir&id=${usuario.id}">Excluir</a>||
-					<a href="UsuarioController?acao=editar&id=${usuario.id}">Editar</a>
+				<td><a href="UsuarioController?acao=editar&id=${usuario.id}">Editar</a>||
+					<a href="UsuarioController?acao=excluir&id=${usuario.id}" onclick="return confirm('Deseja Excluir ${usuario.nome}?')">Excluir</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -74,8 +74,7 @@
 						<div style="letter-spacing: 3px;">
 							<!-- 	mostra a paginacao embaixo da tabela -->
 							<c:forEach begin="1" end="${paginacao}" var="i">
-								<a
-									href="UsuarioController?order=id&like=${param.like}&numPagina=${i}">${i}</a>
+								<a href="UsuarioController?order=id&like=${param.like}&numPagina=${i}">${i}</a>
 							</c:forEach>
 						</div>
 					</c:when>

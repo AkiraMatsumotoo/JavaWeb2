@@ -28,6 +28,7 @@ public class UsuarioController extends HttpServlet {
 		String numeroPagina = request.getParameter("numPagina");
 		String order = request.getParameter("order");
 		String like = request.getParameter("like");
+		String buscarPor = request.getParameter("buscarPor");
 
 		String id = request.getParameter("id");
 		String nome = request.getParameter("nome");
@@ -47,12 +48,15 @@ public class UsuarioController extends HttpServlet {
 		if (like == null) {
 			like = "";
 		}
+		if (buscarPor == null) {
+			buscarPor = "nome";
+		}
 
 		int limit = 16;
 		int offset = (Integer.parseInt(numeroPagina) * limit) - limit;
 
 		// pega a quantidade de registro de Usuario no banco
-		int qtdRegistro = dao.qtdRegistro(like);
+		int qtdRegistro = dao.qtdRegistro(buscarPor, like);
 
 		// Dividi a qtd com o limit para saber o total de pagina
 		int paginacao = (qtdRegistro / limit);
@@ -65,7 +69,7 @@ public class UsuarioController extends HttpServlet {
 
 		if (acao.equals("listar")) {
 			dao = new UsuarioDAO();
-			ArrayList<Usuario> lista = dao.buscarTodosCompleto(like, order, limit, offset);
+			ArrayList<Usuario> lista = dao.buscarTodosCompleto(buscarPor, like, order, limit, offset);
 
 			request.setAttribute("paginacao", paginacao);
 			request.setAttribute("listaUsuario", lista);
@@ -74,7 +78,7 @@ public class UsuarioController extends HttpServlet {
 
 		else if (acao.equals("buscar")) {
 			dao = new UsuarioDAO();
-			ArrayList<Usuario> lista = dao.buscarTodosCompleto(like, order, limit, offset);
+			ArrayList<Usuario> lista = dao.buscarTodosCompleto(buscarPor, like, order, limit, offset);
 
 			request.setAttribute("paginacao", paginacao);
 			request.setAttribute("listaUsuario", lista);
@@ -95,9 +99,8 @@ public class UsuarioController extends HttpServlet {
 			Usuario usuarioBuscado = dao.buscarID(Integer.parseInt(id));
 			request.setAttribute("usuarioBuscado", usuarioBuscado);
 			request.getRequestDispatcher("WEB-INF/usuEditar.jsp").forward(request, response);
-
 		}
-		
+
 		else if (acao.equals("adiciona")) {
 			request.getRequestDispatcher("WEB-INF/usuAdiciona.jsp").forward(request, response);
 		}

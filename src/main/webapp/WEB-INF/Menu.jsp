@@ -10,7 +10,7 @@
 	<nav>
 		<ul>
 			<li><a href="UsuarioController">Usuarios</a></li>
-			<li><a href="#">Link 1</a></li>
+			<li><a href="BairroController">Bairro</a></li>
 			<li><a href="#">Link 1</a></li>
 			<li><a href="#">Link 1</a></li>
 			<li><a href="#">Link 1</a></li>

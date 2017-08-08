@@ -16,11 +16,11 @@
 	<div id="todoSite" align="center">
 
 		<div id="header">
-			<jsp:include page="usuCabecalho.jsp" />
+			<jsp:include page="Cabecalho.jsp" />
 		</div>
 
 		<div id="nav">
-			<jsp:include page="usuMenu.jsp" />
+			<jsp:include page="Menu.jsp" />
 		</div>
 
 		<div id="central">
@@ -28,7 +28,7 @@
 		</div>
 
 		<div id="footer">
-			<jsp:include page="usuRodape.jsp" />
+			<jsp:include page="Rodape.jsp" />
 		</div>
 	</div>
 </body>

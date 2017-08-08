@@ -191,13 +191,12 @@ public class UsuarioDAO {
 		return null;
 	}
 
-	public ArrayList<Usuario> buscarTodosCompleto(String like, String order, int limit, int offset) {
-		String sql = "SELECT * FROM usuario WHERE nome LIKE ? ORDER BY " + order + " ASC LIMIT ? OFFSET ?";
+	public ArrayList<Usuario> buscarTodosCompleto(String buscarPor, String like, String order, int limit, int offset) {
+		String sql = "SELECT * FROM usuario WHERE " + buscarPor + " LIKE ? ORDER BY " + order + " ASC LIMIT ? OFFSET ?";
 		ArrayList<Usuario> lista = new ArrayList<>();
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
-			// ps.setString(1, campo);
+			// ps.setString(1, buscarPor);
 			ps.setString(1, "%" + like + "%");
-			// ps.setString(2, order);
 			ps.setInt(2, limit);
 			ps.setInt(3, offset);
 
@@ -253,10 +252,10 @@ public class UsuarioDAO {
 		return null;
 	}
 
-	public int qtdRegistro(String nome) {
-		String sql = "SELECT COUNT(*) AS qtdUsuario FROM usuario WHERE nome LIKE ?";
+	public int qtdRegistro(String buscarPor, String like) {
+		String sql = "SELECT COUNT(*) AS qtdUsuario FROM usuario WHERE " + buscarPor + " LIKE ?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
-			ps.setString(1, "%" + nome + "%");
+			ps.setString(1, "%" + like + "%");
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				int qtd = rs.getInt("qtdUsuario");
